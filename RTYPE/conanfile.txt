@@ -1,0 +1,10 @@
+[requires]
+bzip2/1.0.8@conan/stable
+boost_asio/1.69.0@bincrafters/stable
+sfml/2.5.1@bincrafters/stable
+
+[options]
+sfml:graphics=True
+
+[generators]
+cmake

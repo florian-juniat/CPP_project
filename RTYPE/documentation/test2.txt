@@ -1,0 +1,125 @@
+Network Working Group                                          V.Giraud
+Request for Comments: 2223                                     C.Gippet
+Obsoletes: 1543, 1111, 825                                     F.Juniat
+Category: Video Games                                         N.Brochot
+                                                          November 2019
+
+
+                        Instructions to Rtype Protocol
+
+
+Status of this Memo
+
+    This document is the official Rtype Protocol. Distribution of this
+    memo is unlimited.
+
+
+Abstract
+    
+    The Rtype Protocol has been developed over the past two weeks. It
+    was created to allow players to play multiplayer games. This
+    document is about the Rtype Protocol. It explains to users how the 
+    client interects with the server. //////\\\\\\\The protocol is using UDP
+    connection.
+
+
+Copyright Notice
+    
+    Copyright (C) The internet Society (1997). All rights Reserved.
+
+
+
+Table of Contents
+
+    1. Introduction ..................................................2
+        1.1 Server ...................................................3
+        1.2 Client ...................................................4
+            1.2.1 Commands ...........................................5
+    2. Example of usage ..............................................6
+    3. Network Protocol ..............................................7
+
+
+
+1. Introduction
+
+    The protocol was created to allow players to play multuplayer
+    games. This document discribes the current Rtype Protocol. The
+    protocol was developed using the UDP network protocol. Our
+    system is based on the client/server model. It's suitable for
+    running on many computers in distributed way. Our system is an
+    access point for our clients.
+
+
+    1.1 Server
+
+        The server provides an access point for all clients on the same 
+        network to create or join parties. It's multithreaded allowing
+        to manage several games containing several players. It uses two
+        threads per game. The first to receive the player's commands
+        and add them to the waiting list. The second to execute the
+        player's actions, then the game and send the necessary data for
+        display. Each thread contains a different port.
+
+
+    1.2 Client
+
+        A client connects to the server to register. It sends commands
+        to it using the udp socket. Then, it will receive a code
+        allowing it to know if its order has been accepted. The client 
+        uses two threads to manage the game. The first one allows you
+        to receive the data necessary to display the game. The second
+        one sends the game commansd to the server and displays the
+        differeent elements on an interface.
+
+       
+       1.2.1 Commands
+
+            To communicate with the server, the client uses its
+            commands:
+
+            -connect [Username] -> to register
+            -quit -> quit the server
+
+            -create [name_game] [nb_player] -> to create a game
+            -join [name_party] -> join a party
+            -display -> display games
+            -leave -> leave the waiting room
+
+
+            The client will then receive a code:
+
+            Connection:
+            -100 connection accepted
+            -300 guit accept
+            -401 impossible to connect whitout a username
+
+            Game:
+            -201 creation of accepted games
+            -402 creation of rejected part (name or number of missing
+            person)
+            -202 you have joined a game
+            -403 unable to join a gme whitout a name
+            -204 you have received the different available and ongoing
+            games
+            -203 you left a game if you were in one
+
+
+
+        
+    
+    Our sever allows "n" players on the same network to communicate
+    with itself. The players will be able to find each other trought
+    games. Connected clients can create or join games. The server can
+    manage severel games containing several players. Users will be able
+    to see the current games.
+    One the game contains all its players it starts. During the game,
+    players will be able to play together using the keys on the
+    keyboard.
+
+2. Example of usage
+
+    A client can send a message to the server using an udp socket.
+
+
+
+

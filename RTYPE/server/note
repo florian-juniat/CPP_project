@@ -1,0 +1,37 @@
+2 threads :
+
+1)
+    - qui va recevoir les commandes
+    - obtenir le client correspondant
+    - Créer une action
+    - Ajouter l'action en file d'attente
+
+2) 
+    - Il va check la file d'attente
+    - Il va exécuter les actions
+    - faire tourner le jeu
+    - Il va renvoyer à chacun la map
+
+
+-> Comment savoir que c'est tel client ?
+
+1) Enregister l'ip du client dans client
+2) Party -> getClient(ip)
+3) Faire un test pour mutex
+
+
+------------------------------
+
+4) On essaie de lancer les threads pour juste envoyer et recevoir des réponses.
+
+    - 2) Côté client open sfml window avec listener de 4 flèches.
+    - 3) Création socket pour envoyer
+    -- 1) Créer un thread qui va recevoir de la data sur un port et juste afficher.
+
+    - 1) Lancer un thread qui va écouter sur le port de recv de la partie et affiche ce qu'il a reçu
+    - 2) Création du thread qui va envoyer sur un certain port de la data
+
+
+
+
+5) Créer une base de jeu pour tester
